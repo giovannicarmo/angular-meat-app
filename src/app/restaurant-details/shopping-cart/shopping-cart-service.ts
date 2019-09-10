@@ -11,10 +11,19 @@ export class ShoppingCartService {
   add(item: MenuItem) {
     let foundItem = this.items.find(mItem => mItem.menuItem.id == item.id);
     if (foundItem) {
-      foundItem.quant++;
+      this.increaseQty(foundItem);
     } else {
       this.items.push(new CartItem(item));
     }
+  }
+
+  increaseQty(item: CartItem) {
+    item.quant++;
+  }
+
+  decreaseQty(item: CartItem) {
+    item.quant--;
+    if (item.quant === 0) this.remove(item);
   }
 
   remove(item: CartItem) {

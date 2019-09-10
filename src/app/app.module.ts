@@ -22,7 +22,9 @@ import { ShoppingCartService } from "./restaurant-details/shopping-cart/shopping
 import { OrderComponent } from './order/order.component';
 import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
-import { OrderItensComponent } from './order/src/app/order/order-itens/order-itens.component';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { OderService } from "./order/order.service";
+import { OrderCostsComponent } from './order/order-costs/order-costs.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +43,11 @@ import { OrderItensComponent } from './order/src/app/order/order-itens/order-ite
     OrderComponent,
     InputComponent,
     RadioComponent,
-    OrderItensComponent
+    OrderItemsComponent,
+    OrderCostsComponent
   ],
   imports: [BrowserModule, HttpModule, RouterModule.forRoot(ROUTES), FormsModule],
-  providers: [RestaurantService, ShoppingCartService, {provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [RestaurantService, ShoppingCartService, OderService, {provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

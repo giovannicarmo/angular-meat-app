@@ -14,7 +14,7 @@
                         <th style="width:60%">({{item.quant}}x) {{item.menuItem.name}}</th>
                         <td class="text-right">{{item.value() | currency: 'BRL': true}}</td>
                         <td class="text-right">
-                            <button (click)="removeItem(item)" class="btn btn danger"><i class="fa fa-remove"></i></button>
+                            <a (click)="removeItem(item)" class="btn btn danger"><i class="fa fa-remove"></i></a>
                         </td>
                     </tr>
                     <tr>
