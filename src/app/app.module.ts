@@ -25,6 +25,8 @@ import { RadioComponent } from './shared/radio/radio.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OderService } from "./order/order.service";
 import { OrderCostsComponent } from './order/order-costs/order-costs.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { RatingComponent } from './shared/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { OrderCostsComponent } from './order/order-costs/order-costs.component';
     InputComponent,
     RadioComponent,
     OrderItemsComponent,
-    OrderCostsComponent
+    OrderCostsComponent,
+    OrderSummaryComponent,
+    RatingComponent
   ],
   imports: [BrowserModule, HttpModule, RouterModule.forRoot(ROUTES), FormsModule],
   providers: [RestaurantService, ShoppingCartService, OderService, {provide: LOCALE_ID, useValue: 'pt-BR'}],

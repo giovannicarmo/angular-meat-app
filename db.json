@@ -370,5 +370,44 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "address": "Avenida Barão do Rio Branco",
+      "number": "3008",
+      "optionalAddress": "Bloco H, apto. 203",
+      "paymentOption": "REF",
+      "orderItems": [
+        {
+          "quant": 2,
+          "itemId": "burger"
+        },
+        {
+          "quant": 1,
+          "itemId": "chocpop"
+        },
+        {
+          "quant": 1,
+          "itemId": "sunday"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "address": "Teste",
+      "number": "3008",
+      "optionalAddress": "",
+      "paymentOption": "DCR",
+      "orderItems": [
+        {
+          "quant": 1,
+          "itemId": "cup-cake"
+        },
+        {
+          "quant": 1,
+          "itemId": "donut"
+        }
+      ],
+      "id": 2
+    }
+  ]
 }
