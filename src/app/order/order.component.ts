@@ -4,6 +4,12 @@ import { OderService } from "./order.service";
 import { CartItem } from "app/restaurant-details/shopping-cart/cart-item.model";
 import { Order, OrderItem } from "./order.model";
 import { Router } from "@angular/router";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl
+} from "@angular/forms";
 
 @Component({
   selector: "mt-order",
@@ -17,10 +23,57 @@ export class OrderComponent implements OnInit {
     { label: "Ticket Refeição", value: "REF" }
   ];
   shipping: number = 8;
+  orderForm: FormGroup;
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  numberPattern = /^[0-9]*$/;
 
-  constructor(private orderService: OderService, private router: Router) {}
+  constructor(
+    private orderService: OderService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.orderForm = this.formBuilder.group(
+      {
+        name: this.formBuilder.control("", [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        email: this.formBuilder.control("", [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(this.emailPattern)
+        ]),
+        emailConfirmation: this.formBuilder.control("", [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(this.emailPattern)
+        ]),
+        address: this.formBuilder.control("", [
+          Validators.required,
+          Validators.minLength(5)
+        ]),
+        number: this.formBuilder.control("", [
+          Validators.required,
+          Validators.pattern(this.numberPattern)
+        ]),
+        optionalAddress: this.formBuilder.control(""),
+        paymentOption: this.formBuilder.control("", [Validators.required])
+      },
+      { validator: OrderComponent.equalsTo }
+    );
+  }
+
+  static equalsTo(group: AbstractControl): { [key: string]: boolean } {
+    const email = group.get("email");
+    const emailConfirmation = group.get("emailConfirmation");
+    if (email && emailConfirmation) {
+      if (email.value !== emailConfirmation.value) {
+        return { emailsNotMatch: true };
+      }
+    }
+  }
 
   valueItems(): number {
     return this.orderService.valueItems();
@@ -47,7 +100,7 @@ export class OrderComponent implements OnInit {
       (item: CartItem) => new OrderItem(item.quant, item.menuItem.id)
     );
     this.orderService.checkOrder(order).subscribe((orderId: string) => {
-      this.router.navigate(['/order-summary'])
+      this.router.navigate(["/order-summary"]);
       this.orderService.clear();
     });
   }

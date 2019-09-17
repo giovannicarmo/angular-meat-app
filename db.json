@@ -408,6 +408,26 @@
         }
       ],
       "id": 2
+    },
+    {
+      "name": "Giovanni",
+      "email": "t@gmail.com",
+      "emailConfirmation": "t@gmail.com",
+      "address": "Rua x",
+      "number": "15",
+      "optionalAddress": "",
+      "paymentOption": "CCR",
+      "orderItems": [
+        {
+          "quant": 1,
+          "itemId": "zlasagna"
+        },
+        {
+          "quant": 1,
+          "itemId": "ceasar"
+        }
+      ],
+      "id": 3
     }
   ]
 }

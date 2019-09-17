@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule,  LOCALE_ID} from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ROUTES } from "./app.routes";
 import { AppComponent } from "./app.component";
@@ -50,8 +50,8 @@ import { RatingComponent } from './shared/rating/rating.component';
     OrderSummaryComponent,
     RatingComponent
   ],
-  imports: [BrowserModule, HttpModule, RouterModule.forRoot(ROUTES), FormsModule],
-  providers: [RestaurantService, ShoppingCartService, OderService, {provide: LOCALE_ID, useValue: 'pt-BR'}],
+  imports: [BrowserModule, HttpModule, RouterModule.forRoot(ROUTES), FormsModule, ReactiveFormsModule],
+  providers: [RestaurantService, ShoppingCartService, OderService, ReactiveFormsModule, {provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
